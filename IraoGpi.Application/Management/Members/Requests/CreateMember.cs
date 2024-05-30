@@ -13,7 +13,7 @@ public class CreateMemberRequest
     public string LastName { get; set; }
 
     [DataMember]
-    public string MemberName { get; set; }
+    public string UserName { get; set; }
 
     [DataMember]
     public string Password { get; set; }

@@ -39,7 +39,7 @@ else
     app.UseHsts();
 }
 
-app.SeedData();
+await app.SeedDataAsync();
 
 app.UseSwagger();
 app.UseSwaggerUI(options =>

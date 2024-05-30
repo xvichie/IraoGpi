@@ -8,6 +8,7 @@ using IraoGpi.Application.Management.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using IraoGpi.Domain.Enums;
 
 namespace IraoGpi.API.Controllers;
 
@@ -24,7 +25,6 @@ public class TasksController : ControllerBase
     }
 
     [HttpGet]
-    [AllowAnonymous]
     public async Task<IActionResult> GetTasksAsync([FromQuery] GetTasksRequest request)
     {
         var response = await _taskService.Get(request);

@@ -43,9 +43,9 @@ namespace IraoGpi.Application.Management.Members
                 query = query.Where(user => user.LastName.Equals(request.LastName));
             }
 
-            if (!string.IsNullOrWhiteSpace(request.MemberName))
+            if (!string.IsNullOrWhiteSpace(request.UserName))
             {
-                query = query.Where(user => user.UserName.Equals(request.MemberName));
+                query = query.Where(user => user.UserName.Equals(request.UserName));
             }
 
             #endregion
@@ -60,28 +60,28 @@ namespace IraoGpi.Application.Management.Members
             return ResponseHelper.Ok(response);
         }
 
-        public async Task<IResponse<GetMemberResponse>> Get(GetMemberRequest request,
+        public async Task<IResponse<GetMemberByIdResponse>> Get(GetMemberByIdRequest request,
             CancellationToken cancellationToken = default)
         {
             var query = await _userRepository.GetByIdAsync(request.Id, cancellationToken);
 
-            if (query == null) return ResponseHelper.Fail<GetMemberResponse>(StatusCode.MemberNotFound);
+            if (query == null) return ResponseHelper.Fail<GetMemberByIdResponse>(StatusCode.MemberNotFound);
 
             var user = _mapper.Map<MemberDto>(query);
 
-            return ResponseHelper.Ok(new GetMemberResponse { Member = user });
+            return ResponseHelper.Ok(new GetMemberByIdResponse { Member = user });
         }
 
         public async Task<IResponse<CreateMemberResponse>> Create(CreateMemberRequest request,
             CancellationToken cancellationToken = default)
         {
-            var user = await _userRepository.GetByMemberName(request.MemberName, cancellationToken);
+            var user = await _userRepository.GetByUserName(request.UserName, cancellationToken);
             if (user != null)
             {
-                return ResponseHelper.Fail<CreateMemberResponse>(StatusCode.MembernameAlreadyExists);
+                return ResponseHelper.Fail<CreateMemberResponse>(StatusCode.UsernameAlreadyExists);
             }
 
-            user = Member.Create(request.FirstName, request.LastName, request.MemberName);
+            user = Member.Create(request.FirstName, request.LastName, request.UserName);
 
             var result = await _userManager.CreateAsync(user, request.Password);
             if (!result.Succeeded)
@@ -107,9 +107,9 @@ namespace IraoGpi.Application.Management.Members
             var user = await _userRepository.GetByIdAsync(request.Id, cancellationToken);
             if (user == null) return ResponseHelper.Fail(StatusCode.MemberNotFound);
 
-            var userByMembername = await _userRepository.GetByMemberName(request.MemberName, cancellationToken);
-            if (user.UserName == userByMembername.UserName && user.Id != userByMembername.Id)
-                return ResponseHelper.Fail(StatusCode.MembernameAlreadyExists);
+           // var userByUsername = await _userRepository.GetByUserName(request.UserName, cancellationToken);
+           // if (user.UserName == userByUsername.UserName && user.Id != userByUsername.Id)
+           //     return ResponseHelper.Fail(StatusCode.UsernameAlreadyExists);
 
             _mapper.Map(request, user);
 

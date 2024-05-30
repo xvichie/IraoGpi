@@ -43,7 +43,7 @@ public class AuthService
 
     public async Task<IResponse<LoginResponse>> Login(LoginRequest request)
     {
-        var user = await _userRepository.GetByMemberName(request.Username);
+        var user = await _userRepository.GetByUserName(request.Username);
 
         if (user == null) return ResponseHelper.Fail<LoginResponse>(StatusCode.MemberNotFound);
 
@@ -51,7 +51,7 @@ public class AuthService
 
         if (!result.Succeeded)
         {
-            return ResponseHelper.Fail<LoginResponse>(StatusCode.InvalidMemberNameOrPassword);
+            return ResponseHelper.Fail<LoginResponse>(StatusCode.InvalidUserNameOrPassword);
         }
 
         var userInfo = _mapper.Map<MemberDto>(user);

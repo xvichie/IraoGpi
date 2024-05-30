@@ -11,5 +11,5 @@ namespace IraoGpi.Domain.Abstractions.Repository;
 
 public interface IMemberRepository : IRepository<Member>
 {
-    Task<Member> GetByMemberName(string userName, CancellationToken cancellationToken = default);
+    Task<Member> GetByUserName(string userName, CancellationToken cancellationToken = default);
 }

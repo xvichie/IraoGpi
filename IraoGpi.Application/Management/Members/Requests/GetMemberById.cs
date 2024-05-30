@@ -4,13 +4,13 @@ using System.Runtime.Serialization;
 namespace IraoGpi.Application.Management.Members.Requests;
 
 [DataContract]
-public class GetMemberRequest
+public class GetMemberByIdRequest
 {
     [DataMember]
     public int Id { get; set; }
 }
 
-public class GetMemberResponse
+public class GetMemberByIdResponse
 {
     public MemberDto Member { get; set; }
 }

@@ -1,6 +1,7 @@
 ﻿using IraoGpi.Application.Management.Auth;
 using IraoGpi.Application.Management.Members;
 using IraoGpi.Application.Management.Tasks;
+using IraoGpi.Application.Mapper;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,9 @@ public static class ServiceConfigurationExtension
 
     private static void AddMapper(IServiceCollection services)
     {
-        services.AddAutoMapper(Assembly.GetExecutingAssembly());
+        //services.AddAutoMapper(Assembly.GetExecutingAssembly());
+        services.AddAutoMapper(typeof(TaskProfile));
+        services.AddAutoMapper(typeof(MemberProfile));
     }
 
     private static void AddServices(IServiceCollection services)

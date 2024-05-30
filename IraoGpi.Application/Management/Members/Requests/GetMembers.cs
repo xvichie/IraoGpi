@@ -8,13 +8,13 @@ namespace IraoGpi.Application.Management.Members.Requests;
 public class GetMembersRequest : Request
 {
     [DataMember]
-    public string FirstName { get; set; }
+    public string? FirstName { get; set; }
 
     [DataMember]
-    public string LastName { get; set; }
+    public string? LastName { get; set; }
 
     [DataMember]
-    public string MemberName { get; set; }
+    public string? UserName { get; set; }
 }
 
 public class GetMembersResponse : PaginationHeader

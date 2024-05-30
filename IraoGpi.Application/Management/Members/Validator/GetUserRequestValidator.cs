@@ -3,7 +3,7 @@ using IraoGpi.Application.Management.Members.Requests;
 
 namespace IraoGpi.Application.Management.Members.Validator;
 
-public class GetMemberRequestValidator : AbstractValidator<GetMemberRequest>
+public class GetMemberRequestValidator : AbstractValidator<GetMemberByIdRequest>
 {
     public GetMemberRequestValidator()
     {

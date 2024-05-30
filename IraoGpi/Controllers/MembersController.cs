@@ -11,7 +11,7 @@ namespace IraoGpi.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize(Roles = "Member")]
+[Authorize(Roles = "Support")]
 public class MembersController : ControllerBase
 {
     private readonly MemberService _userService;
@@ -22,7 +22,6 @@ public class MembersController : ControllerBase
     }
 
     [HttpGet]
-    [Authorize(Roles = "Support")]
     public async Task<IActionResult> GetMembersAsync([FromQuery] GetMembersRequest request)
     {
         var response = await _userService.Get(request);
@@ -66,10 +65,10 @@ public class MembersController : ControllerBase
 
     [HttpGet("{id:int}")]
     [ValidateModel]
-    [ProducesResponseType(typeof(GetMemberResponse), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(GetMemberByIdResponse), (int)HttpStatusCode.OK)]
     public async Task<IActionResult> GetMemberAsync(int id, CancellationToken cancellationToken)
     {
-        var response = await _userService.Get(new GetMemberRequest { Id = id }, cancellationToken);
+        var response = await _userService.Get(new GetMemberByIdRequest { Id = id }, cancellationToken);
 
         return Ok(response);
     }

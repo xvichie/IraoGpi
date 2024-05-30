@@ -9,12 +9,12 @@ public enum StatusCode
     [Display(Name = nameof(Error))]
     Error = 1,
 
-    [Display(Name = nameof(MembernameAlreadyExists))]
-    MembernameAlreadyExists,
+    [Display(Name = nameof(UsernameAlreadyExists))]
+    UsernameAlreadyExists,
     [Display(Name = nameof(MemberNotFound))]
     MemberNotFound,
-    [Display(Name = nameof(InvalidMemberNameOrPassword))]
-    InvalidMemberNameOrPassword,
+    [Display(Name = nameof(InvalidUserNameOrPassword))]
+    InvalidUserNameOrPassword,
     [Display(Name = nameof(CannotCreateMember))]
     CannotCreateMember,
     [Display(Name = nameof(CannotAssignRoleToMember))]

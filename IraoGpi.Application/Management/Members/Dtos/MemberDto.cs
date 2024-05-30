@@ -14,5 +14,5 @@ public class MemberDto
 
     public string LastName { get; set; }
 
-    public string MemberName { get; set; }
+    public string UserName { get; set; }
 }

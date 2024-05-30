@@ -11,7 +11,7 @@ public class MemberRepository : BaseRepository<Member>, IMemberRepository
     {
     }
 
-    public async Task<Member> GetByMemberName(string userName, CancellationToken cancellationToken = default)
+    public async Task<Member> GetByUserName(string userName, CancellationToken cancellationToken = default)
     {
         return await DbContext.Set<Member>().FirstOrDefaultAsync(u => u.UserName == userName, cancellationToken);
     }

@@ -8,10 +8,10 @@ namespace IraoGpi.Application.Management.Tasks.Requests;
 public class GetTasksRequest : Request
 {
     [DataMember]
-    public string Title { get; set; }
+    public string? Title { get; set; }
 
     [DataMember]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     [DataMember]
     public int? Priority { get; set; }
